@@ -13,7 +13,6 @@ const pathToCSS= path.join(__dirname, 'static', 'style.css');
 const CSSFile = fs.readFileSync(pathToCSS);
 
 const server = http.createServer((req, res)=>{
-    //Liza ostrologiya eto ne nayka
     switch(req.url){
         case "/":
             return res.end(indexHtmlFile); 
@@ -41,6 +40,18 @@ function addMessage(res, req){
     res.writeHead(302, {Location: '/'});
     res.end();
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const messageList = document.getElementById("messages");
+    const counter = document.getElementById("counter");
+  
+    function updateCounter() {
+      const count = messageList.children.length;
+      counter.textContent = `Messages: ${count}`;
+    }
+  
+    updateCounter();
+  });
+
 
 
 
